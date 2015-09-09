@@ -1,6 +1,6 @@
 /*
 	Try This 3-1
-	s
+	
 	A simple help system.
 */
 
