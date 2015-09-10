@@ -1,6 +1,6 @@
 /*
 	Help3.java
-
+test
 	An improved help system.
 */
 
