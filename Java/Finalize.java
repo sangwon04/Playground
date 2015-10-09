@@ -20,3 +20,19 @@ class FDemo {
     FDemo o = new FDemo(i);
   }
 }
+
+class Finalize {
+  public static void main(String argsp[]) {
+    int count;
+
+    FDemo ob = new FDemo(0);
+    /* Now, generate a large number of objects. At some point, garbage
+       collection will occur. Note: you might need to increase the number
+       of objects generated in order to force garbage collection.
+    */
+
+    for(count = 1; count < 10000000; count++) {
+      ob.generator(count);
+    }
+  }
+}
