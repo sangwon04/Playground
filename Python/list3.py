@@ -14,6 +14,7 @@ def sort_last(tuples):
   for j in rList:
     temp = j[::-1]
     r2List.append(temp)
+  rList[:] = []
   return r2List
 
 # Simple provided test() function used in main() to print
