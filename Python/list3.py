@@ -5,7 +5,7 @@
 # [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
-  rList = []
+  '''rList = []
   r2List = []
   for i in tuples:
     temp = i[::-1]
@@ -15,7 +15,12 @@ def sort_last(tuples):
     temp = j[::-1]
     r2List.append(temp)
   rList[:] = []
-  return r2List
+  return r2List'''
+
+  def sortByLast(s):
+    return s[-1]
+
+  return sorted(tuples, key=sortByLast)
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
