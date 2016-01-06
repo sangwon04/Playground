@@ -39,7 +39,22 @@ print_words() and print_top().
 
 import sys
 
-# +++your code here+++
+def print_words(filename):
+  f = open(filename, 'rU')
+  hash = {}
+  count = 0
+  for line in f:
+    # Split each of the words in the line into a list
+    list = line.split()
+
+    # Parse through each word and see if there are duplicates starting with the
+    # first word in the list, then second, ...
+    for string in list:
+      key = string
+      for x in list[0:]:
+        
+    sys.exit(0)
+
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
