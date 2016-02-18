@@ -52,7 +52,9 @@ def print_words(filename):
     for string in list:
       key = string
       for x in list[0:]:
-        
+        if x == key:
+          count += 1
+          hash
     sys.exit(0)
 
 # Define print_words(filename) and print_top(filename) functions.
