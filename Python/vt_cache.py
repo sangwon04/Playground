@@ -12,7 +12,14 @@ def main(args):
 
         try:
             r = requests.get(url)
-            r = str(r.json()).split("scan_date", 1)[1]
+            r = str(r.json())
+
+            try:
+                r = r.split("scan_date", 1)[1]
+            except:
+                print "Hash \'%s\' was not found in the VT database." % args.hash
+                return
+
             print 'Cleared %s from cache!\n' % args.hash
             print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
             return
@@ -25,7 +32,14 @@ def main(args):
 
         try:
             r = requests.get(url)
-            r = str(r.json()).split("scan_date", 1)[1]
+            r = str(r.json())
+
+            try:
+                r = r.split("scan_date", 1)[1]
+            except:
+                print "Hash \'%s\' was not found in the VT database." % args.hash
+                return
+
             print 'Looking up hash, %s, in cache...\n' % args.hash
             print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
             return
