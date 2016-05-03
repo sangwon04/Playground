@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # UNFINISHED
 
+=======
+>>>>>>> d0df263475ae953d17775c38307553801c79e723
 import sys
 import socket
 import getopt
@@ -18,19 +21,35 @@ port = 0
 def usage():
     print "BHP Net Tool"
     print
+<<<<<<< HEAD
     print "Usage: bhpnet.py -t <target_host> -p <port>"
     print "-l --listen                      - listen on [host]:[port] for incoming connections"
     print "-e --execute=file-to-run         - execute the given file upon receiving a connection"
     print "-c --command                     - initilize a command shell"
     print "-u --upload=destination          - upon receiving connection upload a file and write" \
                                               " to [destination]"
+=======
+    print "Usage: bhpnet.py -t target_host -p port"
+    print "-l --listen                  - listen on [host]:[port] for \
+                                          incoming connnections"
+    print "-e --execute=file_to_run     - execute the given file upon \
+                                          receiving a connection"
+    print "-c --command                 - initialize a command shell"
+    print "-u --upload=destination      - upon receiving connection upload a \
+                                          file and write to [destination]"
+>>>>>>> d0df263475ae953d17775c38307553801c79e723
     print
     print
     print "Examples: "
     print "bhpnet.py -t 192.168.0.1 -p 5555 -l -c"
     print "bhpnet.py -t 192.168.0.1 -p 5555 -l -u=c:\\target.exe"
+<<<<<<< HEAD
     print "bhpnet.py -t 192.168.0.1 -p 5555 -l -e=\"cat /etc/passwd\""
     print "echo 'ABCDEFGHI' | ./bhpnet.py -t 192.168.0.1 -p 135"
+=======
+    print "bhpnet.py -t 192.168.0.1 -p 5555 -l -e=\"cat etc/passwd\""
+    print "echo 'ABCDEFGHI' | ./bhpnet.py -t 192.168.11.12 -p 135"
+>>>>>>> d0df263475ae953d17775c38307553801c79e723
     sys.exit(0)
 
 def main():
@@ -47,6 +66,7 @@ def main():
     # Read the commandline options
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hle:t:p:cu:",
+<<<<<<< HEAD
         ["help", "listen", "execute", "target", "port", "command", "upload"])
     except getopt.GetoptError as err:
         print str(err)
@@ -85,3 +105,10 @@ def main():
         sever_loop()
 
 main()
+=======
+        ["help","listen","execute","target","port","command","upload"])
+
+    except getopt.GetoptError as err:
+        print str(err)
+        usage()
+>>>>>>> d0df263475ae953d17775c38307553801c79e723
