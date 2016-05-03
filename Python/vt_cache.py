@@ -2,13 +2,18 @@
 
 import argparse
 import sys
+import requests
 
 def main(args):
     if args.action == 'clear':
+        r = requests.get('https://api.github.com/sangwon04/%s/max-age=0' % args.hash)
         print 'Clearing cache for %s' % args.hash
+        print r.json()
         sys.exit()
     else:
+        r = requests.get('https://api.github.com/sangwon04/%s' % args.hash)
         print 'Looking up hash, %s, in cache...' % args.hash
+        print r.json()
         sys.exit()
 
 if __name__ == "__main__":
