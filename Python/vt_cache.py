@@ -1,20 +1,38 @@
 #!/usr/bin/python
 
 import argparse
-import sys
 import requests
+import re
 
 def main(args):
+    host = "internal-csapi01-b-720977126.us-west-1.elb.amazonaws.com:8080"
+
     if args.action == 'clear':
-        r = requests.get('https://api.github.com/sangwon04/%s/max-age=0' % args.hash)
-        print 'Clearing cache for %s' % args.hash
-        print r.json()
-        sys.exit()
+        url = "http://%s/csapi/virustotal/vtresults/%s?maxAge=0" % (host, args.hash)
+
+        try:
+            r = requests.get(url)
+            r = str(r.json()).split("scan_date", 1)[1]
+            print 'Cleared %s from cache!\n' % args.hash
+            print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
+            return
+        except:
+            if len(args.hash) != 64:
+                print "\'%s\' is not a valid SHA256 hash." % args.hash
+            return
     else:
-        r = requests.get('https://api.github.com/sangwon04/%s' % args.hash)
-        print 'Looking up hash, %s, in cache...' % args.hash
-        print r.json()
-        sys.exit()
+        url = "http://%s/csapi/virustotal/vtresults/%s" % (host, args.hash)
+
+        try:
+            r = requests.get(url)
+            r = str(r.json()).split("scan_date", 1)[1]
+            print 'Looking up hash, %s, in cache...\n' % args.hash
+            print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
+            return
+        except:
+            if len(args.hash) != 64:
+                print "\'%s\' is not a valid SHA256 hash." % args.hash
+            return
 
 if __name__ == "__main__":
     argParser = argparse.ArgumentParser()
