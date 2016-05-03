@@ -2,9 +2,6 @@
 
 import argparse
 
-def usage():
-    print 'usage: vt_cache.py '
-
 def main(args):
     print args
 
