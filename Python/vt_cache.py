@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
-import argparse
-import requests
-import re
+import argparse, requests, re
 
 def main(args):
     host = "internal-csapi01-b-720977126.us-west-1.elb.amazonaws.com:8080"
