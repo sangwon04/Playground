@@ -4,22 +4,27 @@ import argparse, requests, re
 
 def main(args):
     host = "internal-csapi01-b-720977126.us-west-1.elb.amazonaws.com:8080"
+    lurl = "http://%s/csapi/virustotal/vtresults/%s?maxAge=0" % (host, args.hash)
+    curl = "http://%s/csapi/virustotal/vtresults/%s" % (host, args.hash)
 
     if args.action == 'clear':
-        url = "http://%s/csapi/virustotal/vtresults/%s?maxAge=0" % (host, args.hash)
-
         try:
-            r = requests.get(url)
+            r = requests.get(curl)
             r = str(r.json())
 
             try:
                 r = r.split("scan_date", 1)[1]
+                r2 = r.split("\"positives\": ", 1)[1]
             except:
-                print "Hash \'%s\' was not found in the VT database." % args.hash
+                if not r:
+                    print "Hash \'%s\' was not found in the VT database." % args.hash
+                else:
+                    print "Error"
                 return
 
             print 'Cleared %s from cache!\n' % args.hash
             print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
+            print "==================================\nPOSITIVE HITS: %s\n==================================\n" % r2[0:1]
             return
         except:
             if len(args.hash) != 64:
@@ -29,17 +34,22 @@ def main(args):
         url = "http://%s/csapi/virustotal/vtresults/%s" % (host, args.hash)
 
         try:
-            r = requests.get(url)
+            r = requests.get(lurl)
             r = str(r.json())
 
             try:
                 r = r.split("scan_date", 1)[1]
+                r2 = r.split("\"positives\": ", 1)[1]
             except:
-                print "Hash \'%s\' was not found in the VT database." % args.hash
+                if not r:
+                    print "Hash \'%s\' was not found in the VT database." % args.hash
+                else:
+                    print "Error"
                 return
 
             print 'Looking up hash, %s, in cache...\n' % args.hash
             print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
+            print "==================================\nPOSITIVE HITS: %s\n==================================\n" % r2[0:1]
             return
         except:
             if len(args.hash) != 64:
