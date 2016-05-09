@@ -7,6 +7,10 @@ def main(args):
     lurl = "http://%s/csapi/virustotal/vtresults/%s?maxAge=0" % (host, args.hash)
     curl = "http://%s/csapi/virustotal/vtresults/%s" % (host, args.hash)
 
+    if len(args.hash) != 64:
+        print "\'%s\' is not a valid SHA256 hash." % args.hash
+        return
+
     if args.action == 'clear':
         try:
             r = requests.get(curl)
@@ -27,8 +31,6 @@ def main(args):
             print "==================================\nPOSITIVE HITS: %s\n==================================\n" % r2[0:1]
             return
         except:
-            if len(args.hash) != 64:
-                print "\'%s\' is not a valid SHA256 hash." % args.hash
             return
     else:
         url = "http://%s/csapi/virustotal/vtresults/%s" % (host, args.hash)
@@ -52,8 +54,6 @@ def main(args):
             print "==================================\nPOSITIVE HITS: %s\n==================================\n" % r2[0:1]
             return
         except:
-            if len(args.hash) != 64:
-                print "\'%s\' is not a valid SHA256 hash." % args.hash
             return
 
 if __name__ == "__main__":
