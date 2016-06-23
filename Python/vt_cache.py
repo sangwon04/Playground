@@ -4,8 +4,8 @@ import argparse, requests, re
 
 def main(args):
     host = "internal-csapi01-b-720977126.us-west-1.elb.amazonaws.com:8080"
-    lurl = "http://%s/csapi/virustotal/vtresults/%s?maxAge=0" % (host, args.hash)
-    curl = "http://%s/csapi/virustotal/vtresults/%s" % (host, args.hash)
+    curl = "http://%s/csapi/virustotal/vtresults/%s?maxAge=0" % (host, args.hash)
+    lurl = "http://%s/csapi/virustotal/vtresults/%s" % (host, args.hash)
 
     if len(args.hash) != 64:
         print "\'%s\' is not a valid SHA256 hash." % args.hash
@@ -26,9 +26,9 @@ def main(args):
                     print "Error"
                 return
 
-            print 'Cleared %s from cache!\n' % args.hash
-            print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
-            print "==================================\nPOSITIVE HITS: %s\n==================================\n" % r2[0:1]
+            print 'Cleared %s from cache!' % args.hash
+            print "\nANALYSIS DATE: %s" % r[4:23]
+            print "POSITIVE HITS: %s\n" % r2[0:1]
             return
         except:
             return
@@ -49,9 +49,9 @@ def main(args):
                     print "Error"
                 return
 
-            print 'Looking up hash, %s, in cache...\n' % args.hash
-            print "==================================\nANALYSIS DATE: %s\n==================================\n" % r[4:23]
-            print "==================================\nPOSITIVE HITS: %s\n==================================\n" % r2[0:1]
+            print 'Looking up hash, %s, in cache...' % args.hash
+            print "\nANALYSIS DATE: %s" % r[4:23]
+            print "POSITIVE HITS: %s\n" % r2[0:1]
             return
         except:
             return
