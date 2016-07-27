@@ -26,8 +26,8 @@ content_md5 = base64.b64encode(hashlib.md5("").digest())
 date = email.utils.formatdate(localtime=False, usegmt=True)
 path = "firehose.crowdstrike.com/sensors/entities/datafeed/v1"
 query_string = "?appId=joseph"
-requestString = "\n".join([method, date, path, query_string])
-signature = base64.b64encode(hmac.new(sKey, content_md5, requestString, hashlib.sha256).digest())
+requestString = "\n".join([method, content_md5, date, path, query_string])
+signature = base64.b64encode(hmac.new(sKey, requestString, hashlib.sha256).digest())
 print requestString + '\n'
 print "Signature: %r\n\n" % signature
 
