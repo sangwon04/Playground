@@ -5,8 +5,9 @@ class Vehicle():
         self.make = make
         self.gas = gas
 
-    def drive():
+    def drive(self):
         if self.gas > 0:
             print "Vroom!"
+            self.gas -= 1
         else:
             print "Gas tank empty"
